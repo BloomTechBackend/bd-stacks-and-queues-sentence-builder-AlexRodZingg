@@ -1,10 +1,13 @@
+import java.util.Stack;
+
 public class SentenceBuilder {
 
     /**
      * Constructor.
      */
+    Stack<String> stack;
     public SentenceBuilder() {
-
+        stack = new Stack<>();
     }
 
     /**
@@ -12,7 +15,7 @@ public class SentenceBuilder {
      * @param word to be added to the sentence.
      */
     public void addWord(String word) {
-
+        stack.push(word);
     }
 
     /**
@@ -20,7 +23,8 @@ public class SentenceBuilder {
      * @return The word most recently added to the sentence, if any; null, otherwise.
      */
     public String undo() {
-        return null;
+        if (stack.isEmpty()) return null;
+        return stack.pop();
     }
 
     /**
@@ -28,6 +32,15 @@ public class SentenceBuilder {
      * @return string representation of the words currently in the sentence.
      */
     public String getSentenceWords() {
-        return "[]";
+        if (stack.isEmpty()) return "[]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (String s : stack) {
+            sb.append(s + ", ");
+        }
+        // Remove the last ", "
+        String ans = sb.toString().substring(0, sb.length() - 2);
+        ans += "]";
+        return ans;
     }
 }
