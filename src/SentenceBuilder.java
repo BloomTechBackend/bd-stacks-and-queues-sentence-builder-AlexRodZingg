@@ -32,15 +32,6 @@ public class SentenceBuilder {
      * @return string representation of the words currently in the sentence.
      */
     public String getSentenceWords() {
-        if (stack.isEmpty()) return "[]";
-        StringBuilder sb = new StringBuilder();
-        sb.append("[");
-        for (String s : stack) {
-            sb.append(s + ", ");
-        }
-        // Remove the last ", "
-        String ans = sb.toString().substring(0, sb.length() - 2);
-        ans += "]";
-        return ans;
+        return stack.toString();
     }
 }
